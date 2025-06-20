@@ -1,96 +1,68 @@
-/* Import CRT-style font */
+/* Import CRT font */
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --green: #00FF66; /* more accurate to your image */
+}
 
 html, body {
   margin: 0;
   padding: 0;
-  background: #000;
-  color: #00FF00;
+  background-color: #000;
+  color: var(--green);
   font-family: 'VT323', monospace;
-  font-size: 20px;
-  text-shadow: 0 0 1px #00FF00;
-  overflow-x: hidden;
-}
-
-.terminal {
-  max-width: 100%;
-  width: 90%;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  border: 2px solid #00FF00;
-  background: #000;
-  box-sizing: border-box;
-}
-
-/* Typography */
-h1, h2, h3 {
-  margin: 0 0 1rem 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 22px;
+  line-height: 1.6;
+  text-align: center;
+  text-shadow: 0 0 1px var(--green);
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
+  margin-top: 2rem;
 }
 
 h2 {
   font-size: 1.5rem;
+  margin: 0.5rem 0 2rem 0;
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 2rem;
+  margin: 2rem 0 0.5rem 0;
 }
 
-p {
-  margin-bottom: 1rem;
+h4 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
 }
 
-ul {
-  list-style-type: square;
-  padding-left: 1.5rem;
-  margin: 1rem 0;
+.intro {
+  max-width: 600px;
+  margin: 0 auto 2rem;
 }
 
-a {
-  color: #00FF00;
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-top: 1px solid var(--green);
+  border-bottom: 1px solid var(--green);
+  padding: 0.5rem;
+  margin: 2rem 0;
+}
+
+.nav a {
+  color: var(--green);
   text-decoration: none;
-  word-wrap: break-word;
+  padding: 0.25rem 0.5rem;
 }
 
-a:hover {
+.nav a:hover {
   text-decoration: underline;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 600px) {
-  body {
-    font-size: 16px;
-  }
-
-  .terminal {
-    width: 95%;
-    padding: 1rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  a {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-}
-
-/* Optional: scanline effect */
+/* CRT scanline effect */
 body::after {
   content: "";
   position: fixed;
@@ -98,13 +70,87 @@ body::after {
   left: 0;
   height: 100%;
   width: 100%;
+  pointer-events: none;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(0, 255, 0, 0.05),
-    rgba(0, 255, 0, 0.05) 1px,
+    rgba(0, 255, 102, 0.03),
+    rgba(0, 255, 102, 0.03) 1px,
     transparent 1px,
     transparent 2px
   );
-  pointer-events: none;
-  z-index: 9999;
+  z-index: 999;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+#posts {
+  margin-top: 3rem;
+}
+
+#post-list {
+  list-style-type: square;
+  padding-left: 0;
+  text-align: center;
+}
+
+#post-list li {
+  margin: 0.5rem 0;
+}
+
+#post-list a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+#post-list a:hover {
+  text-decoration: underline;
+}
+
+/* Post date style */
+#post-list a {
+  display: inline-block;
+  padding: 0.25rem;
+}
+
+/* Scroll progress bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background-color: var(--green);
+  z-index: 1000;
+}
+
+/* Scroll-to-top button */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  background: #000;
+  color: var(--green);
+  border: 1px solid var(--green);
+  padding: 0.5rem 1rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  text-shadow: 0 0 1px var(--green);
+}
+
+#scrollToTopBtn:hover {
+  background: var(--green);
+  color: #000;
 }

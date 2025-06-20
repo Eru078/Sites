@@ -1,0 +1,27 @@
+body {
+  background-color: #000;
+  color: #00FF00;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 2rem;
+  text-shadow: 0 0 1px #0f0;
+}
+
+.terminal {
+  max-width: 700px;
+  margin: auto;
+  border: 1px solid #0f0;
+  padding: 2rem;
+}
+
+a {
+  color: #0f0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: square;
+  padding-left: 1.5rem;
+}

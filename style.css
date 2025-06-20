@@ -8,6 +8,24 @@ body {
   text-shadow: 0 0 1px #00FF00;
 }
 
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.03),
+    rgba(0, 255, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 1000;
+}
+
 .terminal {
   max-width: 800px;
   margin: 2rem auto;
@@ -56,22 +74,4 @@ ul {
     display: block;
     margin-bottom: 0.5rem;
   }
-}
-
-body::after {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 255, 0, 0.03),
-    rgba(0, 255, 0, 0.03) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  z-index: 1000;
 }

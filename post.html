@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
-  <article id="content">Loading...</article>
  
 <!-- Scroll Progress Indicator -->
   <div id="scroll-indicator"></div>
@@ -18,9 +16,12 @@
   <div id="progress-bar"></div>
 
 <!-- Scroll to Top Button -->
-  <button id="scrollToTopBtn" title="Go to top"></button>
+<button id="scrollToTopBtn" title="Go to top"></button>
 
+  <h1>Reading Post...</h1>
+  <article id="content">Loading...</article>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
   const urlParams = new URLSearchParams(window.location.search);
   const file = urlParams.get('file');

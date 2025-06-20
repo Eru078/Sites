@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Blog Post</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet" />
   <style>
     :root {
       --green: #00FF00;
@@ -14,15 +14,15 @@
       margin: 0;
       background: #000;
       color: var(--green);
-      font-family: 'Courier New', monospace;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
-      line-height: 1.7;
+      line-height: 1.4;
     }
 
     header, footer {
       background: #000;
       color: var(--green);
-      padding: 1rem;
+      padding: 0.8rem;
       text-align: center;
       border-bottom: 1px solid var(--green);
     }
@@ -30,8 +30,8 @@
     footer {
       border-top: 1px solid var(--green);
       border-bottom: none;
-      font-size: 0.9rem;
-      margin-top: 4rem;
+      font-size: 0.85rem;
+      margin-top: 3rem;
     }
 
     #scroll-indicator {
@@ -46,8 +46,8 @@
     }
 
     article {
-      max-width: 680px;
-      margin: 2rem auto;
+      max-width: 800px;
+      margin: 1.5rem auto;
       padding: 0 1rem;
     }
 
@@ -58,7 +58,7 @@
 
     h1, h2, h3 {
       color: var(--green);
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     img {
@@ -67,15 +67,15 @@
 
     #scrollToTopBtn {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 20px;
+      right: 20px;
       z-index: 999;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.4);
       color: var(--green);
       border: 1px solid var(--green);
       padding: 0.4rem 0.7rem;
       font-family: inherit;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       display: none;
       transition: background 0.2s ease-in-out;
@@ -109,7 +109,7 @@
     <p>&copy; 2025 • Made with ☕ + 💾</p>
   </footer>
 
-  <!-- Markdown Rendering & Scroll Scripts -->
+  <!-- Markdown Render + Scroll Logic -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -138,11 +138,10 @@
       const scrolled = (winScroll / height) * 100;
       document.getElementById("scroll-indicator").style.width = scrolled + "%";
 
-      // Toggle scroll-to-top button
+      // Top button
       document.getElementById("scrollToTopBtn").style.display = scrolled > 10 ? "block" : "none";
     });
 
-    // Scroll-to-top action
     document.getElementById("scrollToTopBtn").onclick = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };

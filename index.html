@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>SOICHIRO KAMUI — Terminal Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="terminal">
+    <h1>SOICHIRO KAMUI</h1>
+    <h2>FULL DRIVE GAME WALKTHROUGH</h2>
+    <p>This is all you’ve got, so don’t screw it up.</p>
+
+    <h3>Posts</h3>
+    <ul id="post-list">Loading...</ul>
+  </div>
+
+  <script>
+    fetch("posts.json")
+      .then(res => res.json())
+      .then(posts => {
+        const list = document.getElementById("post-list");
+        list.innerHTML = "";
+        posts.forEach(post => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = `post.html?post=${post.file}`;
+          a.textContent = post.title;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

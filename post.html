@@ -14,7 +14,33 @@
       font-family: 'VT323', monospace;
       font-size: 1.2rem;
       line-height: 1.6;
-      padding: 2rem 1rem;
+      padding: 0;
+    }
+
+    header, footer {
+      background: #000;
+      color: var(--green, #00FF00);
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid var(--green, #00FF00);
+    }
+
+    footer {
+      border-top: 1px solid var(--green, #00FF00);
+      border-bottom: none;
+      font-size: 1rem;
+      margin-top: 4rem;
+    }
+
+    a {
+      color: var(--green, #00FF00);
+      text-decoration: underline;
+    }
+
+    article {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
     #scroll-indicator {
@@ -49,44 +75,40 @@
       color: #000;
     }
 
-    article {
-      max-width: 720px;
-      margin: 0 auto;
-      padding-top: 1rem;
-    }
-
-    h1, h2, h3 {
-      color: var(--green, #00FF00);
-    }
-
-    a {
-      color: var(--green, #00FF00);
-      text-decoration: underline;
-    }
-
     img {
       max-width: 100%;
     }
   </style>
 </head>
 <body>
+
   <!-- Scroll Progress Bar -->
   <div id="scroll-indicator"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>⌘ My Terminal Blog</h1>
+    <p><a href="index.html">← Back to Home</a></p>
+  </header>
 
   <!-- Blog Post Content -->
   <article id="content">Loading post...</article>
 
   <!-- Scroll to Top Button -->
-  <button id="scrollToTopBtn" title="Go to top"></button>
+  <button id="scrollToTopBtn" title="Go to top">⬆</button>
 
-  <!-- Markdown Rendering + JS Logic -->
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 • Made with ☕ + 💾</p>
+  </footer>
+
+  <!-- Markdown Renderer + Scroll JS -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    // Get markdown filename from URL
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
 
-    // Render markdown post
+    // Load markdown
     if (file) {
       fetch(`posts/${file}`)
         .then(res => {
@@ -103,7 +125,7 @@
       document.getElementById('content').textContent = 'No post specified.';
     }
 
-    // Scroll progress indicator
+    // Scroll bar progress
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -111,7 +133,7 @@
       document.getElementById("scroll-indicator").style.width = scrolled + "%";
     });
 
-    // Scroll-to-top button
+    // Top button
     const topBtn = document.getElementById("scrollToTopBtn");
     window.onscroll = () => {
       topBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)

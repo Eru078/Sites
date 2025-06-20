@@ -6,56 +6,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: var(--green, #00FF00);
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    #scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background-color: var(--green, #00FF00);
+      z-index: 999;
+      transition: width 0.1s ease-out;
+    }
+
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background: #000;
+      color: var(--green, #00FF00);
+      border: 1px solid var(--green, #00FF00);
+      padding: 0.5rem 1rem;
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      text-shadow: 0 0 1px var(--green, #00FF00);
+    }
+
+    #scrollToTopBtn:hover {
+      background: var(--green, #00FF00);
+      color: #000;
+    }
+
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-top: 1rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--green, #00FF00);
+    }
+
+    a {
+      color: var(--green, #00FF00);
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  </style>
 </head>
 <body>
- 
-<!-- Scroll Progress Indicator -->
+  <!-- Scroll Progress Bar -->
   <div id="scroll-indicator"></div>
 
-<!-- Scroll Progress Bar -->
-  <div id="progress-bar"></div>
+  <!-- Blog Post Content -->
+  <article id="content">Loading post...</article>
 
-<!-- Scroll to Top Button -->
-<button id="scrollToTopBtn" title="Go to top"></button>
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTopBtn" title="Go to top"></button>
 
-  <h1>Reading Post...</h1>
-  <article id="content">Loading...</article>
-
+  <!-- Markdown Rendering + JS Logic -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const file = urlParams.get('file');
+    // Get markdown filename from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get('file');
 
-  if (file) {
-    fetch(`posts/${file}`)
-      .then(res => res.text())
-      .then(md => {
-        document.getElementById('content').innerHTML = marked.parse(md);
-      })
-      .catch(() => {
-        document.getElementById('content').textContent = 'Post not found.';
-      });
-  } else {
-    document.getElementById('content').textContent = 'No post file specified.';
-  }
+    // Render markdown post
+    if (file) {
+      fetch(`posts/${file}`)
+        .then(res => {
+          if (!res.ok) throw new Error('Not found');
+          return res.text();
+        })
+        .then(md => {
+          document.getElementById('content').innerHTML = marked.parse(md);
+        })
+        .catch(() => {
+          document.getElementById('content').textContent = 'Post not found.';
+        });
+    } else {
+      document.getElementById('content').textContent = 'No post specified.';
+    }
 
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
-  });
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scroll-indicator").style.width = scrolled + "%";
+    });
 
-  // Scroll-to-top button
-  const topBtn = document.getElementById("scrollToTopBtn");
-  window.onscroll = () => {
-    topBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)
-      ? "block" : "none";
-  };
-  topBtn.onclick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-</script>
+    // Scroll-to-top button
+    const topBtn = document.getElementById("scrollToTopBtn");
+    window.onscroll = () => {
+      topBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)
+        ? "block" : "none";
+    };
+    topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  </script>
 </body>
 </html>

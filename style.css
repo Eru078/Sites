@@ -2,13 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-  --green: #27834c; /* more accurate to your image */
+  --green: #1f6d37; /* more accurate to your image */
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #0d221c;
+  background-color: #071f0e;
   color: var(--green);
   font-family: 'VT323', monospace;
   font-size: 22px;

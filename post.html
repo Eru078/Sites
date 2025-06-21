@@ -64,6 +64,26 @@
     img {
       max-width: 100%;
     }
+    
+    /* CRT scanline effect */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 102, 0.03),
+    rgba(0, 255, 102, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 999;
+}
+
 
     #scrollToTopBtn {
       position: fixed;

@@ -7,7 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --green: #1f6d37;
+      --green: #E8E8E8;
+      --gray: #CECECE;
+      --orange: #F89741;
     }
 
     body {
@@ -20,15 +22,15 @@
     }
 
     header, footer {
-      background: #010C05;
+      background: #FDE276;
       color: var(--green);
       padding: 0.8rem;
       text-align: center;
-      border-bottom: 1px solid var(--green);
+      border-bottom: 1px solid var(--gray);
     }
 
     footer {
-      border-top: 1px solid var(--green);
+      border-top: 1px solid var(--gray);
       border-bottom: none;
       font-size: 0.85rem;
       margin-top: 3rem;
@@ -40,13 +42,13 @@
       left: 0;
       width: 0%;
       height: 4px;
-      background-color: var(--green);
+      background-color: var(--orange);
       z-index: 999;
       transition: width 0.1s ease-out;
     }
 
     article {
-      max-width: 800px;
+      max-width: 600px;
       margin: 1rem auto;
       padding: 0 1rem;
     }
@@ -92,7 +94,7 @@ body::after {
       z-index: 999;
       background: rgba(0, 0, 0, 0.4);
       color: var(--green);
-      border: 1px solid var(--green);
+      border: 1px solid var(--orange);
       padding: 0.4rem 0.7rem;
       font-family: inherit;
       font-size: 1.1rem;
